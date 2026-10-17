@@ -1,0 +1,81 @@
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#05080a;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;color:#c8ffd8}
+#monitor{width:min(1100px,98vw);aspect-ratio:16/10;background:#1b2024;border-radius:22px;padding:18px 18px 34px;box-shadow:0 0 60px #00ff8830,inset 0 0 0 3px #2c343a;position:relative}
+#monitor::after{content:'';position:absolute;bottom:11px;left:50%;width:70px;height:8px;border-radius:4px;background:#333;transform:translateX(-50%)}
+#screen{width:100%;height:100%;background:#071410;border-radius:10px;overflow:hidden;position:relative;border:2px solid #0f3326}
+#screen::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,transparent 0 2px,#00000022 2px 3px)}
+.hidden{display:none!important}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;overflow:auto}
+.stack{display:flex;flex-direction:column;gap:10px;align-items:center;width:min(360px,90%)}
+.row{display:flex;gap:8px}
+h1{font-size:clamp(28px,6vw,56px);margin:0;letter-spacing:3px;color:#39ff8a;text-shadow:0 0 14px #39ff8a}
+h1 span{color:#ff4d6d;text-shadow:0 0 14px #ff4d6d}
+.sub{margin:0 0 10px;opacity:.7}
+.btn{font-family:inherit;font-size:16px;padding:12px 18px;width:100%;background:#0c2a1e;color:#9dffc4;border:1px solid #39ff8a;border-radius:6px;cursor:pointer}
+.btn:hover{background:#12452f;box-shadow:0 0 12px #39ff8a66}
+.btn.red{border-color:#ff4d6d;color:#ffb3c0;background:#2a0c14}
+.btn.blue{border-color:#4da6ff;color:#b3d9ff;background:#0c1a2a}
+.btn.ghost{background:transparent;border-color:#356;color:#8aa}
+input{font-family:inherit;font-size:16px;padding:10px;background:#02100a;color:#9dffc4;border:1px solid #39ff8a;border-radius:6px;width:100%;text-transform:none}
+#codeInput{text-transform:uppercase;letter-spacing:4px;text-align:center}
+.code{font-size:44px;letter-spacing:10px;color:#39ff8a;text-shadow:0 0 12px #39ff8a}
+
+/* 게임 화면 */
+#game.scr{padding:0;gap:0;align-items:stretch;justify-content:flex-start}
+.titlebar{display:flex;justify-content:space-between;padding:8px 14px;background:#0d2a20;border-bottom:1px solid #1d5a42;font-weight:bold}
+#game[data-role=hacker] .titlebar{background:#2a0f18;color:#ff8da1}
+#game[data-role=defender] .titlebar{background:#0f1c2e;color:#8cc4ff}
+.body{flex:1;display:flex;min-height:0}
+.desktop{flex:1;display:flex;flex-direction:column;min-width:0}
+.appbar{display:flex;gap:6px;padding:8px;background:#0a1f17;border-bottom:1px solid #123}
+.appbar button{font-family:inherit;padding:8px 10px;background:#0c2a1e;color:#9dffc4;border:1px solid #1d5a42;border-radius:5px;cursor:pointer;font-size:13px}
+.appbar button.on{background:#1b5a3f;border-color:#39ff8a}
+.window{flex:1;margin:10px;padding:14px;background:#03100b;border:1px solid #1d5a42;border-radius:6px;position:relative;overflow:hidden}
+.window h3{margin:0 0 12px;font-size:15px;color:#7dffb0}
+.mission{width:260px;padding:12px;background:#08170f;border-left:1px solid #1d5a42;overflow:auto;font-size:13px}
+.mission h3{margin:8px 0;font-size:14px;color:#7dffb0}
+.mission ul{margin:0 0 12px;padding-left:18px;line-height:1.5}
+.meter{margin-bottom:10px}
+.meter label{display:flex;justify-content:space-between;margin-bottom:3px}
+.track{height:12px;background:#02100a;border:1px solid #1d5a42;border-radius:6px;overflow:hidden}
+.track i{display:block;height:100%;width:0;transition:width .3s}
+.track i.red{background:#ff4d6d}.track i.blue{background:#4da6ff}
+#log{display:flex;flex-direction:column;gap:3px;max-height:150px;overflow:auto;font-size:12px;opacity:.85}
+
+/* 미니게임 공통 */
+.tbar{position:absolute;left:14px;right:14px;bottom:10px;height:8px;background:#02100a;border-radius:4px;overflow:hidden}
+.tbar i{display:block;height:100%;width:100%;background:#ffd24d}
+.target{font-size:26px;letter-spacing:3px;padding:14px;background:#02100a;border:1px dashed #39ff8a;border-radius:6px;margin-bottom:12px;text-align:center;word-break:break-all}
+.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.res{display:flex;height:100%;align-items:center;justify-content:center;font-size:24px}
+.res.ok{color:#39ff8a}.res.bad{color:#ff6b81}
+
+/* 포트 스캔 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:420px}
+.cell{font-family:inherit;padding:14px 4px;background:#0c2a1e;color:#9dffc4;border:1px solid #1d5a42;border-radius:5px;cursor:pointer}
+.cell.hit{background:#1b6b3f;border-color:#39ff8a}
+.cell.miss{background:#2a1a1a;color:#855;border-color:#422}
+
+/* 패킷 차단 */
+.sky{position:relative;height:calc(100% - 70px);border:1px solid #123;background:#020c08;overflow:hidden}
+.pkt{position:absolute;top:-30px;padding:6px 10px;border-radius:5px;font-size:12px;cursor:pointer;animation:fall 3.2s linear forwards;user-select:none}
+.pkt.bad{background:#4a1220;border:1px solid #ff4d6d;color:#ffb3c0}
+.pkt.good{background:#10351f;border:1px solid #39ff8a;color:#9dffc4}
+.pkt.oops{background:#ff4d6d;color:#fff}
+@keyframes fall{to{top:100%}}
+
+/* 로그 분석 */
+.logline{display:block;width:100%;text-align:left;font-family:inherit;font-size:13px;padding:9px;margin-bottom:6px;background:#06160f;color:#9dffc4;border:1px solid #1d5a42;border-radius:4px;cursor:pointer}
+.logline:hover{background:#0d2b1e}
+.logline.wrong{background:#2a1a1a;color:#855}
+
+/* 결과 */
+#result{position:absolute;inset:0;z-index:60;background:#000000dd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+#result h2{font-size:40px;margin:0}
+
+@media(max-width:700px){
+  #monitor{aspect-ratio:auto;height:96vh}
+  .body{flex-direction:column}
+  .mission{width:100%;border-left:0;border-top:1px solid #1d5a42;max-height:40%}
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HACK vs DEFEND</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="monitor">
+  <div id="screen">
+
+    <!-- 첫 화면 -->
+    <section id="menu" class="scr">
+      <h1>HACK <span>vs</span> DEFEND</h1>
+      <p class="sub">해커 vs 방어자 · 2인 온라인 미니게임</p>
+
+      <div id="menuMain" class="stack">
+        <button class="btn" id="btnSolo">🤖 개인 플레이 (AI 상대)</button>
+        <button class="btn" id="btnMulti">👥 같이 플레이 (온라인)</button>
+      </div>
+
+      <div id="menuSolo" class="stack hidden">
+        <p>역할을 고르세요</p>
+        <button class="btn red" data-solo="hacker">😈 해커</button>
+        <button class="btn blue" data-solo="defender">🛡️ 방어자</button>
+        <button class="btn ghost" data-back>← 뒤로</button>
+      </div>
+
+      <div id="menuMulti" class="stack hidden">
+        <button class="btn" id="btnCreate">➕ 방 만들기</button>
+        <div class="row">
+          <input id="codeInput" maxlength="5" placeholder="방 코드 5자리">
+          <button class="btn" id="btnJoin">참여</button>
+        </div>
+        <button class="btn ghost" data-back>← 뒤로</button>
+      </div>
+    </section>
+
+    <!-- 대기실 -->
+    <section id="lobby" class="scr hidden">
+      <h2 id="lobbyTitle">대기실</h2>
+      <p id="lobbyMsg"></p>
+      <div id="shareBox" class="stack hidden">
+        <div class="code" id="roomCode"></div>
+        <input id="roomLink" readonly>
+        <button class="btn" id="btnCopy">📋 초대 링크 복사</button>
+      </div>
+      <button class="btn ghost" id="btnLeave">나가기</button>
+    </section>
+
+    <!-- 게임 화면 -->
+    <section id="game" class="scr hidden">
+      <div class="titlebar"><span id="roleLabel"></span><span id="timer">02:30</span></div>
+      <div class="body">
+        <div class="desktop">
+          <div class="appbar" id="appbar"></div>
+          <div class="window" id="window"></div>
+        </div>
+        <aside class="mission">
+          <h3>🎯 나의 목표</h3>
+          <ul id="goals"></ul>
+          <div class="meter"><label>침투도 <b id="vBreach">0%</b></label><div class="track"><i id="bBreach" class="red"></i></div></div>
+          <div class="meter"><label>추적도 <b id="vTrace">0%</b></label><div class="track"><i id="bTrace" class="blue"></i></div></div>
+          <div class="meter"><label>방어막 <b id="vShield"></b></label></div>
+          <h3>📜 로그</h3>
+          <div id="log"></div>
+        </aside>
+      </div>
+      <div id="result" class="hidden">
+        <h2 id="resTitle"></h2>
+        <p id="resSub"></p>
+        <div class="row">
+          <button class="btn" id="btnAgain">다시 하기</button>
+          <button class="btn ghost" id="btnMenu">메뉴로</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
